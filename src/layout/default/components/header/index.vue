@@ -13,7 +13,7 @@ const {state} = storeToRefs(userStore)
 <template>
 <div>
   <div>
-    <items :name="`🪵  X ${state?.item?.[itemEnum.Wood].count || 0}`" ref="itemRef"/>
+    <items v-for="(item,i) in state?.item" :key="i" :name="`${item.icon}  X ${item.count || 0}`" ref="itemRef"/>
   </div>
 </div>
 </template>

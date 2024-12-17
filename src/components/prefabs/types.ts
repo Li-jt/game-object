@@ -1,6 +1,8 @@
 export enum itemEnum {
     Tree,
-    Wood
+    Wood,
+    Stone,
+    Fire
 }
 
 export type valueTypes = {
@@ -9,4 +11,5 @@ export type valueTypes = {
     type: itemEnum;
     icon: string;
     burnTime?: number;
+    level?: number;
 }
