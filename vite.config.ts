@@ -5,6 +5,7 @@ import {fileURLToPath} from "node:url";
 
 // https://vite.dev/config/
 export default defineConfig({
+  publicDir: 'game-object',
   plugins: [
       vue(),
     vueJsx()

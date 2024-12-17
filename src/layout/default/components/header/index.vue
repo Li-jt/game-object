@@ -13,7 +13,7 @@ const {state} = storeToRefs(userStore)
 <template>
 <div>
   <div>
-    <items :name="`🪵  X ${state?.item?.[itemEnum.Wood].count}`" ref="itemRef"/>
+    <items :name="`🪵  X ${state?.item?.[itemEnum.Wood].count || 0}`" ref="itemRef"/>
   </div>
 </div>
 </template>
