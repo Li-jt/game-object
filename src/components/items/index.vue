@@ -53,7 +53,9 @@ defineExpose({
 <template>
 <div>
   <div class="item my-[5px]">
-    {{name}}
+    <div :class="{
+      'item-s': startAnima
+    }">{{name}}</div>
     <div class="item-sj" ref="animaRef" :class="{
       'item-sj-p': startAnima
     }"></div>
@@ -76,6 +78,10 @@ defineExpose({
   position: relative;
   overflow: hidden;
 
+  .item-s{
+    animation: item-s 4s infinite;
+  }
+
   .item-sj{
     position: absolute;
     top: 0;
@@ -89,14 +95,26 @@ defineExpose({
   .item-sj-p{
     animation: anima v-bind(animationTime) linear;
   }
+}
 
-  @keyframes anima {
-    0%{
-      width: 100%;
-    }
-    100%{
-      width: 0;
-    }
+@keyframes anima {
+  0%{
+    width: 100%;
+  }
+  100%{
+    width: 0;
+  }
+}
+
+@keyframes item-s {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1);
   }
 }
 </style>
