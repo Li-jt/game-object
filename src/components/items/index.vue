@@ -23,6 +23,7 @@ const animationTime = computed(()=>{
 const end = () => {
   startAnima.value?.pause()
   startAnima.value = null
+  gsap.set(animaRef.value,{width:'0%'})
 }
 
 const start = () => {

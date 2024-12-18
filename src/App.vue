@@ -5,7 +5,7 @@ import {itemEnum} from "@/components/prefabs/types";
 
 onMounted(()=>{
   const userStore = useUserStore()
-  if(userStore.getItem(itemEnum.Fire)?.level < 1){
+  if(!userStore.getItem(itemEnum.Fire) || userStore.getItem(itemEnum.Fire)?.level < 1){
     userStore.setItem(itemEnum.Fire,{
       name: '火',
       icon: '🔥',
