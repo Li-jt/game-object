@@ -7,7 +7,7 @@ onMounted(()=>{
   const userStore = useUserStore()
   if(!userStore.getItem(itemEnum.Fire) || userStore.getItem(itemEnum.Fire)?.level < 1){
     userStore.setItem(itemEnum.Fire,{
-      name: '火1111112222233333',
+      name: '火111111222223333344444',
       icon: '🔥',
       type: itemEnum.Fire,
       level: 1,
