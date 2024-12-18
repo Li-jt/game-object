@@ -4,6 +4,9 @@ on:
   push:
     branches: [ main ] # 或者你希望触发的分支名，例如：master
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
