@@ -52,6 +52,7 @@ const judgmentMaterials = () => {
   const items = config[nowFire?.level]?.items
   if(!items) return false
   for (let i = 0; i < items?.length; i++) {
+    if(!Object.keys(userStore.getItem(Object.keys(items[i])[0] as number)).length) return false
     if(userStore.getItem(Object.keys(items[i])[0] as number)?.count < items[i][Object.keys(items[i])[0]]){
       return false
     }
@@ -99,7 +100,7 @@ const handleUpgrade = () => {
         <div class="absolute top-[40%] right-[0] z-[1] text-[12px]">🪨</div>
         <div class="absolute bottom-[-7px] z-[2] text-[12px]">🪨🪨🪨🪨🪨</div>
       </div>
-      <Items name="🔥" ref="itemRef" :timer="1" @animation-end="handleAnimationEnd"/>
+      <Items name="🔥" ref="itemRef" :timer="3" @animation-end="handleAnimationEnd"/>
     </div>
     <Items v-else name="🔥" ref="itemRef" :timer="1" @click="handleClick" @animation-end="handleAnimationEnd"/>
   </div>
