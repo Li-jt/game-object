@@ -26,8 +26,8 @@ const {state} = storeToRefs(userStore)
 const handleAnimationEnd = (fun: () => void) => {
   const item = userStore.getItem(itemEnum.Wood)
   item.count -= 1
-  if(item?.count > 0){
-    fun()
+  if(item?.count <= 0){
+    itemRef.value!.end()
   }
 }
 

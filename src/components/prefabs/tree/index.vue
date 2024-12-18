@@ -8,7 +8,7 @@ import {random} from 'lodash-es'
 const itemRef = shallowRef<InstanceType<typeof Items>>()
 
 const userStore  = useUserStore()
-const handleAnimationEnd = (fun: () => void) => {
+const handleAnimationEnd = () => {
   const item = userStore.getItem(itemEnum.Wood)
   userStore.setItem(itemEnum.Wood,{
     name: '木头',
@@ -17,7 +17,6 @@ const handleAnimationEnd = (fun: () => void) => {
     ...item,
     count: item?.count ? item.count + random(1,3) : 1,
   })
-  fun()
 }
 
 const handleClick = () => {

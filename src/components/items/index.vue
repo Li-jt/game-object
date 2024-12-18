@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {computed, onMounted, ref, shallowRef} from "vue";
+import gsap from 'gsap'
 
 const props = withDefaults(defineProps<{
   name: string
@@ -13,35 +14,30 @@ const emits = defineEmits(['animationEnd'])
 
 const animaRef = shallowRef()
 
-const startAnima = ref(false)
+const startAnima = ref<GSAPTween>()
 
 const animationTime = computed(()=>{
   return props.timer + 's'
 })
 
-const timeoutId = ref()
-const handleAnimationEnd = async () => {
-  startAnima.value = false
-  emits('animationEnd',()=>{
-    setTimeout(()=>{
-        startAnima.value = true
-      },100)
-  })
-}
-
 const end = () => {
-  timeoutId.value && clearTimeout(timeoutId.value)
-  startAnima.value = false
+  startAnima.value?.pause()
+  startAnima.value = null
 }
 
 const start = () => {
-  startAnima.value = true
-  timeoutId.value && clearTimeout(timeoutId.value)
+  gsap.set(animaRef.value,{width:'100%'})
+  startAnima.value = gsap.to(animaRef.value, {
+    width: '0%', // 目标宽度
+    duration: props.timer, // 动画持续时间
+    ease: 'none', // 动画缓动
+    repeat: -1, // 无限循环
+    onRepeat: () => {
+      // 在这里添加你的回调逻辑
+      emits('animationEnd')
+    }
+  });
 }
-
-onMounted(()=>{
-  animaRef.value.addEventListener('animationend', handleAnimationEnd)
-})
 
 defineExpose({
   end,
@@ -56,9 +52,7 @@ defineExpose({
     <div :class="{
       'item-s': startAnima
     }">{{name}}</div>
-    <div class="item-sj" ref="animaRef" :class="{
-      'item-sj-p': startAnima
-    }"></div>
+    <div class="item-sj" ref="animaRef"></div>
   </div>
 </div>
 </template>
